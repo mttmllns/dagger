@@ -71,14 +71,12 @@ final class ComponentProcessingStep implements ProcessingStep {
 
   @Override
   public Set<Class<? extends Annotation>> annotations() {
-    return ImmutableSet.<Class<? extends Annotation>>of(Component.class, Component.Builder.class,
-        Subcomponent.class, Subcomponent.Builder.class);
+    return ImmutableSet.<Class<? extends Annotation>>of(Component.class, Subcomponent.class);
   }
 
   @Override
   public void process(SetMultimap<Class<? extends Annotation>, Element> elementsByAnnotation) {
-    Set<? extends Element> componentBuilderElements =
-        elementsByAnnotation.get(Component.Builder.class);
+    Set<? extends Element> componentBuilderElements = ImmutableSet.of();
     Map<Element, ValidationReport<TypeElement>> builderReportsByComponent = Maps.newHashMap();
     for (Element element : componentBuilderElements) {
       ValidationReport<TypeElement> report =
@@ -87,8 +85,7 @@ final class ComponentProcessingStep implements ProcessingStep {
       builderReportsByComponent.put(element.getEnclosingElement(), report);
     }
     
-    Set<? extends Element> subcomponentBuilderElements =
-        elementsByAnnotation.get(Subcomponent.Builder.class);
+    Set<? extends Element> subcomponentBuilderElements = ImmutableSet.of();
     Map<Element, ValidationReport<TypeElement>> builderReportsBySubcomponent = Maps.newHashMap();
     for (Element element : subcomponentBuilderElements) {
       ValidationReport<TypeElement> report =
