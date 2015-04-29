@@ -1,7 +1,7 @@
 Dagger 2
 ========
 
-A fast dependency injector for Android and Java.
+A fast dependency injector for Android and Java.  TEST EDIT.
 
 About Google's Fork
 -------------
